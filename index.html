@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>hey :)</title>
+  <meta name="description" content="I made something for you." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/style.css" />
+</head>
+
+<body>
+  <div class="grain" aria-hidden="true"></div>
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- SCREEN 1: The hook -->
+  <div class="screen active" id="screen-intro">
+    <p class="small-text fade-in">i made something for you</p>
+    <button class="main-btn" id="btn-open">open it</button>
+  </div>
+
+  <!-- SCREEN 2: Fake loading -->
+  <div class="screen" id="screen-loading">
+    <div class="loader-wrap">
+      <div class="loader-bar">
+        <div class="loader-fill" id="loader-fill"></div>
+      </div>
+      <p class="loader-text" id="loader-text">loading your surprise...</p>
+    </div>
+  </div>
+
+  <!-- SCREEN 3: The question -->
+  <div class="screen" id="screen-question">
+    <p class="question-text" id="q-text">do you like me?</p>
+    <div class="btn-row">
+      <button class="answer-btn yes-btn" id="btn-yes">yes</button>
+      <button class="answer-btn no-btn" id="btn-no">no</button>
+    </div>
+  </div>
+
+  <!-- SCREEN 4: Rate me -->
+  <div class="screen" id="screen-rate">
+    <p class="question-text">on a scale of 1–10, how much?</p>
+    <div class="rate-row" id="rate-row"></div>
+    <p class="rate-response" id="rate-response"></p>
+  </div>
+
+  <!-- SCREEN 5: Final -->
+  <div class="screen" id="screen-final">
+    <p class="final-text" id="final-text"></p>
+    <p class="final-sub" id="final-sub"></p>
+  </div>
+
+  <!-- Leave banner -->
+  <div class="leave-banner" id="leave-banner">
+    <p>you're leaving?? on valentine's day?? 💔</p>
+  </div>
+
+  <script type="module" src="/main.js"></script>
+</body>
+
+</html>

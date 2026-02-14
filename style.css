@@ -1,0 +1,353 @@
+/* ═══════════════════════════════════
+   TEASE SITE — Styles
+   ═══════════════════════════════════ */
+
+:root {
+  --bg: #0a0a0f;
+  --surface: #151520;
+  --accent: #c2185b;
+  --accent-glow: rgba(194, 24, 91, 0.35);
+  --amber: #ffab40;
+  --text: #e8e0d6;
+  --muted: #6a6a7a;
+  --font: 'Inter', system-ui, sans-serif;
+  --spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  cursor: default;
+}
+
+/* Grain */
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 128px;
+}
+
+/* BG Canvas */
+#bg-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* ── Screens ── */
+.screen {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.6s ease;
+}
+
+.screen.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* ── Screen 1: Intro ── */
+.small-text {
+  font-size: 1rem;
+  font-weight: 300;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+}
+
+.fade-in {
+  animation: fadeIn 1.5s ease forwards;
+}
+
+.main-btn {
+  font-family: var(--font);
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  color: white;
+  background: var(--accent);
+  border: none;
+  padding: 16px 48px;
+  border-radius: 60px;
+  cursor: pointer;
+  transition: all 0.3s var(--spring);
+  opacity: 0;
+  animation: fadeIn 1s ease 0.8s forwards;
+}
+
+.main-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 40px var(--accent-glow);
+}
+
+/* ── Screen 2: Loader ── */
+.loader-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: 280px;
+}
+
+.loader-bar {
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.loader-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--accent);
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+.loader-text {
+  font-size: 0.8rem;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+  text-align: center;
+  min-height: 1.5em;
+}
+
+/* ── Screen 3: Question ── */
+.question-text {
+  font-size: clamp(1.4rem, 4vw, 2rem);
+  font-weight: 600;
+  text-align: center;
+  padding: 0 24px;
+}
+
+.btn-row {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  position: relative;
+}
+
+.answer-btn {
+  font-family: var(--font);
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 14px 40px;
+  border-radius: 60px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.25s var(--spring);
+}
+
+.yes-btn {
+  background: var(--accent);
+  color: white;
+  box-shadow: 0 4px 24px var(--accent-glow);
+}
+
+.yes-btn:hover {
+  transform: scale(1.08);
+  box-shadow: 0 8px 40px var(--accent-glow);
+}
+
+.no-btn {
+  background: var(--surface);
+  color: var(--muted);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+}
+
+/* ── Screen 4: Rate ── */
+.rate-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 0 16px;
+}
+
+.rate-btn {
+  font-family: var(--font);
+  font-size: 1.1rem;
+  font-weight: 500;
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+  transition: all 0.25s var(--spring);
+}
+
+.rate-btn:hover {
+  border-color: var(--accent);
+  box-shadow: 0 0 20px var(--accent-glow);
+  transform: scale(1.1);
+}
+
+.rate-btn.nope {
+  animation: shake 0.4s ease;
+}
+
+.rate-response {
+  font-size: 0.9rem;
+  color: var(--amber);
+  min-height: 1.5em;
+  text-align: center;
+  padding: 0 24px;
+}
+
+/* ── Screen 5: Final ── */
+.final-text {
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  font-weight: 600;
+  opacity: 0;
+  animation: fadeIn 1s ease 0.3s forwards;
+}
+
+.final-sub {
+  font-size: 0.85rem;
+  color: var(--muted);
+  opacity: 0;
+  animation: fadeIn 1s ease 1.5s forwards;
+}
+
+/* ── Cursor sparkle ── */
+.spark {
+  position: fixed;
+  pointer-events: none;
+  z-index: 99998;
+  font-size: 13px;
+  color: var(--accent);
+  animation: sparkDrift 0.7s ease-out forwards;
+  transform: translate(-50%, -50%);
+}
+
+/* ── Leave banner ── */
+.leave-banner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 60000;
+  background: linear-gradient(135deg, var(--accent), #e91e63);
+  padding: 14px 24px;
+  text-align: center;
+  transform: translateY(-100%);
+  transition: transform 0.4s var(--spring);
+}
+
+.leave-banner.show {
+  transform: translateY(0);
+}
+
+.leave-banner p {
+  font-size: 0.9rem;
+  color: white;
+  font-weight: 500;
+}
+
+/* ── Confetti ── */
+.confetti {
+  position: fixed;
+  z-index: 50000;
+  pointer-events: none;
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  animation: confettiFall 2.5s ease-out forwards;
+}
+
+/* ── Keyframes ── */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shake {
+
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  25% {
+    transform: translateX(-8px);
+  }
+
+  75% {
+    transform: translateX(8px);
+  }
+}
+
+@keyframes sparkDrift {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-50%, calc(-50% - 25px)) scale(0) rotate(120deg);
+  }
+}
+
+@keyframes confettiFall {
+  0% {
+    opacity: 1;
+    transform: translateY(0) rotate(0deg);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(100vh) rotate(720deg);
+  }
+}
+
+/* ── Mobile ── */
+@media (max-width: 480px) {
+  .answer-btn {
+    padding: 12px 32px;
+    font-size: 0.9rem;
+  }
+
+  .rate-btn {
+    width: 44px;
+    height: 44px;
+    font-size: 1rem;
+  }
+}
